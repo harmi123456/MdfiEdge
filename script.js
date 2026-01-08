@@ -23,6 +23,13 @@ window.addEventListener("scroll", () => {
     }
 });
 
+window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".custom-navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+
+
 // Active link on scroll
 window.addEventListener("scroll", () => {
     let current = "";
@@ -88,22 +95,22 @@ document.querySelectorAll('.scroll-reveal').forEach((el) => {
 
 // Home page section 5
 // Intersection Observer for scroll animations
-const servicesObserverOptions = {
+// Intersection Observer for card animations
+const observerOptions1 = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
-const servicesScrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+const observer1 = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, index * 100);
         }
     });
-}, servicesObserverOptions);
+}, observerOptions1);
 
-// Observe all service cards
-document.querySelectorAll('.service-card').forEach((card, index) => {
-    // Add staggered delay
-    card.style.transitionDelay = `${index * 0.1}s`;
-    servicesScrollObserver.observe(card);
+document.querySelectorAll('.service-card').forEach(card => {
+    observer1.observe(card);
 });
