@@ -10,44 +10,40 @@ fetch('footer.html')
         document.getElementById('footer').innerHTML = data;
     });
 
+
+// Header script start
 const navbar = document.querySelector(".custom-navbar");
-const navLinks = document.querySelectorAll(".nav-link");
-const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
 
 // Navbar shadow on scroll
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
-
-window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".custom-navbar");
     navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
 
+// Smooth scroll for anchor links (if needed)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
 
-
-// Active link on scroll
-window.addEventListener("scroll", () => {
-    let current = "";
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        if (pageYOffset >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
+                // Close mobile menu after click
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    bootstrap.Collapse.getInstance(navbarCollapse).hide();
+                }
+            }
         }
     });
 });
+
+// Header script over
 
 
 
