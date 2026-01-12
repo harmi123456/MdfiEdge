@@ -110,3 +110,196 @@ const observer1 = new IntersectionObserver((entries) => {
 document.querySelectorAll('.service-card').forEach(card => {
     observer1.observe(card);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// contact Us form script start
+const form = document.getElementById('contactForm');
+const successMessage = document.getElementById('successMessage');
+const submitBtn = form.querySelector('.submit-btn');
+
+// **IMPORTANT: Replace with your actual email address**
+const YOUR_EMAIL = 'your-email@example.com';
+
+// Validation functions
+function validateName(name) {
+    return name.trim().length >= 2;
+}
+
+function validatePhone(phone) {
+    const phoneRegex = /^[0-9]{10,15}$/;
+    return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validateMessage(message) {
+    return message.trim().length >= 10;
+}
+
+// Show error
+function showError(field, errorId) {
+    const input = document.getElementById(field);
+    const error = document.getElementById(errorId);
+    input.classList.add('error');
+    error.classList.add('show');
+}
+
+// Hide error
+function hideError(field, errorId) {
+    const input = document.getElementById(field);
+    const error = document.getElementById(errorId);
+    input.classList.remove('error');
+    error.classList.remove('show');
+}
+
+// Real-time validation
+document.getElementById('name').addEventListener('input', function () {
+    if (validateName(this.value)) {
+        hideError('name', 'nameError');
+    }
+});
+
+document.getElementById('phone').addEventListener('input', function () {
+    if (validatePhone(this.value)) {
+        hideError('phone', 'phoneError');
+    }
+});
+
+document.getElementById('email').addEventListener('input', function () {
+    if (validateEmail(this.value)) {
+        hideError('email', 'emailError');
+    }
+});
+
+document.getElementById('message').addEventListener('input', function () {
+    if (validateMessage(this.value)) {
+        hideError('message', 'messageError');
+    }
+});
+
+// Send email using FormSubmit.co
+async function sendEmail(name, phone, email, message) {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('email', email);
+    formData.append('message', message);
+    formData.append('_subject', `New Contact Form Submission from ${name}`);
+    formData.append('_captcha', 'false');
+    formData.append('_template', 'table');
+
+    try {
+        const response = await fetch("https://formsubmit.co/harmipagada4@gmail.com", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        return response.ok;
+    } catch (error) {
+        console.error('Error sending email:', error);
+        return false;
+    }
+}
+
+
+// Form submission
+form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    let isValid = true;
+
+    // Validate all fields
+    if (!validateName(name)) {
+        showError('name', 'nameError');
+        isValid = false;
+    } else {
+        hideError('name', 'nameError');
+    }
+
+    if (!validatePhone(phone)) {
+        showError('phone', 'phoneError');
+        isValid = false;
+    } else {
+        hideError('phone', 'phoneError');
+    }
+
+    if (!validateEmail(email)) {
+        showError('email', 'emailError');
+        isValid = false;
+    } else {
+        hideError('email', 'emailError');
+    }
+
+    if (!validateMessage(message)) {
+        showError('message', 'messageError');
+        isValid = false;
+    } else {
+        hideError('message', 'messageError');
+    }
+
+    // If form is valid
+    if (isValid) {
+        // Disable submit button
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        // Send email
+        const emailSent = await sendEmail(name, phone, email, message);
+
+        if (emailSent) {
+            // Show success message
+            successMessage.classList.add('show');
+
+            // Reset form
+            form.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        } else {
+            alert('Failed to send message. Please try again.');
+        }
+
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+    }
+});
+
+// contact Us form script over
+
+//cont6act us subscribe script start
+function handleSubmit(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    alert('Thank you for subscribing with: ' + input.value);
+    input.value = '';
+    return false;
+}
+
+//contact us subscribe script over
