@@ -10,90 +10,90 @@ fetch('footer.html')
 
 // Load header
 fetch('header.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('header').innerHTML = data;
-    initializeHeader();
-  })
-  .catch(err => console.error('Header load error:', err));
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById('header').innerHTML = data;
+        initializeHeader();
+    })
+    .catch(err => console.error('Header load error:', err));
 
 function initializeHeader() {
 
-  const navbar = document.querySelector(".custom-navbar");
-  const navLinks = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
-  const dropdownToggle = document.querySelector(".nav-link.dropdown-toggle");
-  const dropdownItems = document.querySelectorAll(".dropdown-item");
+    const navbar = document.querySelector(".custom-navbar");
+    const navLinks = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
+    const dropdownToggle = document.querySelector(".nav-link.dropdown-toggle");
+    const dropdownItems = document.querySelectorAll(".dropdown-item");
 
-  // -------- ACTIVE PAGE LOGIC --------
-  const currentPath = window.location.pathname;
-  const currentPage =
-    currentPath.substring(currentPath.lastIndexOf('/') + 1) || "index.html";
+    // -------- ACTIVE PAGE LOGIC --------
+    const currentPath = window.location.pathname;
+    const currentPage =
+        currentPath.substring(currentPath.lastIndexOf('/') + 1) || "index.html";
 
-  // Reset
-  navLinks.forEach(link => link.classList.remove("active"));
-  dropdownItems.forEach(item => item.classList.remove("active"));
-  if (dropdownToggle) dropdownToggle.classList.remove("active");
+    // Reset
+    navLinks.forEach(link => link.classList.remove("active"));
+    dropdownItems.forEach(item => item.classList.remove("active"));
+    if (dropdownToggle) dropdownToggle.classList.remove("active");
 
-  // Main nav active
-  navLinks.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
-    }
-  });
-
-  // Services child page active (NO FORCE OPEN)
-  let serviceActive = false;
-
-  dropdownItems.forEach(item => {
-    if (item.getAttribute("href") === currentPage) {
-      item.classList.add("active");
-      serviceActive = true;
-    }
-  });
-
-  if (serviceActive && dropdownToggle) {
-    dropdownToggle.classList.add("active");
-  }
-
-  // -------- NAVBAR SCROLL EFFECT --------
-  if (navbar) {
-    window.addEventListener("scroll", () => {
-      navbar.classList.toggle("scrolled", window.scrollY > 50);
+    // Main nav active
+    navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
     });
-  }
 
-  // -------- SMOOTH SCROLL --------
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", e => {
-      const target = document.querySelector(anchor.getAttribute("href"));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
-        closeMobileMenu();
-      }
+    // Services child page active (NO FORCE OPEN)
+    let serviceActive = false;
+
+    dropdownItems.forEach(item => {
+        if (item.getAttribute("href") === currentPage) {
+            item.classList.add("active");
+            serviceActive = true;
+        }
     });
-  });
 
-  // -------- CLOSE MENU ON OUTSIDE CLICK --------
-  document.addEventListener("click", e => {
-    const collapse = document.querySelector(".navbar-collapse");
-    const toggler = document.querySelector(".navbar-toggler");
-
-    if (
-      collapse?.classList.contains("show") &&
-      !collapse.contains(e.target) &&
-      !toggler.contains(e.target)
-    ) {
-      closeMobileMenu();
+    if (serviceActive && dropdownToggle) {
+        dropdownToggle.classList.add("active");
     }
-  });
 
-  function closeMobileMenu() {
-    const collapse = document.querySelector(".navbar-collapse");
-    if (collapse) {
-      bootstrap.Collapse.getOrCreateInstance(collapse).hide();
+    // -------- NAVBAR SCROLL EFFECT --------
+    if (navbar) {
+        window.addEventListener("scroll", () => {
+            navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
     }
-  }
+
+    // -------- SMOOTH SCROLL --------
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", e => {
+            const target = document.querySelector(anchor.getAttribute("href"));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: "smooth" });
+                closeMobileMenu();
+            }
+        });
+    });
+
+    // -------- CLOSE MENU ON OUTSIDE CLICK --------
+    document.addEventListener("click", e => {
+        const collapse = document.querySelector(".navbar-collapse");
+        const toggler = document.querySelector(".navbar-toggler");
+
+        if (
+            collapse?.classList.contains("show") &&
+            !collapse.contains(e.target) &&
+            !toggler.contains(e.target)
+        ) {
+            closeMobileMenu();
+        }
+    });
+
+    function closeMobileMenu() {
+        const collapse = document.querySelector(".navbar-collapse");
+        if (collapse) {
+            bootstrap.Collapse.getOrCreateInstance(collapse).hide();
+        }
+    }
 }
 
 // ================= HEADER SCRIPT END =================
@@ -358,3 +358,11 @@ function handleSubmit(e) {
 }
 
 //contact us subscribe script over
+
+
+
+
+
+
+
+

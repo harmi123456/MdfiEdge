@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Selector with ID Translation</title>
+    <style>
+        :root {
+            --primary: #0f3d32;
+            --secondary: #6b3fa0;
+            --dark: #0b0f0e;
+            --light: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .language-dropdown-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .dropdown-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background: var(--light);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 10px;
+            min-width: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lang-option {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            font-size: 15px;
+        }
+
+        .lang-option:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+        }
+
+        .flag {
+            font-size: 20px;
+        }
+
+        /* Demo content styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+
+        .demo-section {
+            background: var(--light);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        h1, h2, h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--dark);
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Content - Replace with your actual website content -->
+    <!-- Just add IDs to elements you want to translate -->
+    
+    <div class="demo-section">
+        <h1 id="main-title">Welcome to Our Website</h1>
+        <p id="main-description">This is the main description of our website. Click the language button to translate!</p>
+    </div>
+
+    <div class="demo-section">
+        <h2 id="about-heading">About Us</h2>
+        <p id="about-text">We are a professional company providing excellent services to our customers worldwide.</p>
+    </div>
+
+    <div class="demo-section">
+        <h3 id="services-heading">Our Services</h3>
+        <p id="services-text">We offer top-quality services including web development, mobile apps, and digital marketing.</p>
+    </div>
+
+    <div class="demo-section">
+        <h3 id="contact-heading">Contact Information</h3>
+        <p id="contact-text">Feel free to reach out to us anytime. We are here to help you!</p>
+    </div>
+
+    <!-- Language Dropdown -->
+    <div class="language-dropdown-container">
+        <div class="language-selector">
+            <button class="language-btn" onclick="toggleDropdown()">
+                <span class="flag" id="currentFlag">🌐</span>
+                <span id="currentLangName">Language</span>
+                <span class="dropdown-icon" id="dropdownIcon">▼</span>
+            </button>
+            
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="lang-option" onclick="changeLanguage('en', '🇬🇧', 'English')">
+                    <span class="flag">🇬🇧</span>
+                    <span>English</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('hi', '🇮🇳', 'हिंदी')">
+                    <span class="flag">🇮🇳</span>
+                    <span>Hindi (हिंदी)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('gu', '🇮🇳', 'ગુજરાતી')">
+                    <span class="flag">🇮🇳</span>
+                    <span>Gujarati (ગુજરાતી)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ja', '🇯🇵', '日本語')">
+                    <span class="flag">🇯🇵</span>
+                    <span>Japanese (日本語)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('zh', '🇨🇳', '中文')">
+                    <span class="flag">🇨🇳</span>
+                    <span>Chinese (中文)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es', '🇪🇸', 'Español')">
+                    <span class="flag">🇪🇸</span>
+                    <span>Spanish (Español)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('fr', '🇫🇷', 'Français')">
+                    <span class="flag">🇫🇷</span>
+                    <span>French (Français)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('de', '🇩🇪', 'Deutsch')">
+                    <span class="flag">🇩🇪</span>
+                    <span>German (Deutsch)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ar', '🇸🇦', 'العربية')">
+                    <span class="flag">🇸🇦</span>
+                    <span>Arabic (العربية)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ru', '🇷🇺', 'Русский')">
+                    <span class="flag">🇷🇺</span>
+                    <span>Russian (Русский)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('pt', '🇵🇹', 'Português')">
+                    <span class="flag">🇵🇹</span>
+                    <span>Portuguese (Português)</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ko', '🇰🇷', '한국어')">
+                    <span class="flag">🇰🇷</span>
+                    <span>Korean (한국어)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // TRANSLATION DATA - Add your translations here with ID as key
+        const translations = {
+            // ID: { language_code: "translated text" }
+            "main-title": {
+                en: "Welcome to Our Website",
+                hi: "हमारी वेबसाइट में आपका स्वागत है",
+                gu: "અમારી વેબસાઇટ પર આપનું સ્વાગત છે",
+                ja: "私たちのウェブサイトへようこそ",
+                zh: "欢迎访问我们的网站",
+                es: "Bienvenido a nuestro sitio web",
+                fr: "Bienvenue sur notre site Web",
+                de: "Willkommen auf unserer Website",
+                ar: "مرحبا بكم في موقعنا",
+                ru: "Добро пожаловать на наш сайт",
+                pt: "Bem-vindo ao nosso site",
+                ko: "우리 웹사이트에 오신 것을 환영합니다"
+            },
+            "main-description": {
+                en: "This is the main description of our website. Click the language button to translate!",
+                hi: "यह हमारी वेबसाइट का मुख्य विवरण है। अनुवाद करने के लिए भाषा बटन पर क्लिक करें!",
+                gu: "આ અમારી વેબસાઇટનું મુખ્ય વર્ણન છે. અનુવાદ કરવા માટે ભાષા બટન પર ક્લિક કરો!",
+                ja: "これは私たちのウェブサイトの主な説明です。翻訳するには言語ボタンをクリックしてください！",
+                zh: "这是我们网站的主要描述。点击语言按钮进行翻译！",
+                es: "Esta es la descripción principal de nuestro sitio web. ¡Haz clic en el botón de idioma para traducir!",
+                fr: "Ceci est la description principale de notre site Web. Cliquez sur le bouton de langue pour traduire!",
+                de: "Dies ist die Hauptbeschreibung unserer Website. Klicken Sie auf die Sprachschaltfläche zum Übersetzen!",
+                ar: "هذا هو الوصف الرئيسي لموقعنا. انقر فوق زر اللغة للترجمة!",
+                ru: "Это основное описание нашего сайта. Нажмите кнопку языка для перевода!",
+                pt: "Esta é a descrição principal do nosso site. Clique no botão de idioma para traduzir!",
+                ko: "이것은 우리 웹사이트의 주요 설명입니다. 번역하려면 언어 버튼을 클릭하세요!"
+            },
+            "about-heading": {
+                en: "About Us",
+                hi: "हमारे बारे में",
+                gu: "અમારા વિશે",
+                ja: "私たちについて",
+                zh: "关于我们",
+                es: "Sobre nosotros",
+                fr: "À propos de nous",
+                de: "Über uns",
+                ar: "معلومات عنا",
+                ru: "О нас",
+                pt: "Sobre nós",
+                ko: "회사 소개"
+            },
+            "about-text": {
+                en: "We are a professional company providing excellent services to our customers worldwide.",
+                hi: "हम एक पेशेवर कंपनी हैं जो दुनिया भर के अपने ग्राहकों को उत्कृष्ट सेवाएं प्रदान करती है।",
+                gu: "અમે એક વ્યાવસાયિક કંપની છીએ જે વિશ્વભરના અમારા ગ્રાહકોને ઉત્તમ સેવાઓ પ્રદાન કરે છે.",
+                ja: "私たちは世界中のお客様に優れたサービスを提供するプロフェッショナルな会社です。",
+                zh: "我们是一家专业公司，为全球客户提供卓越的服务。",
+                es: "Somos una empresa profesional que brinda excelentes servicios a nuestros clientes en todo el mundo.",
+                fr: "Nous sommes une entreprise professionnelle offrant d'excellents services à nos clients du monde entier.",
+                de: "Wir sind ein professionelles Unternehmen, das unseren Kunden weltweit hervorragende Dienstleistungen bietet.",
+                ar: "نحن شركة محترفة تقدم خدمات ممتازة لعملائنا في جميع أنحاء العالم.",
+                ru: "Мы профессиональная компания, предоставляющая отличные услуги нашим клиентам по всему миру.",
+                pt: "Somos uma empresa profissional que oferece excelentes serviços aos nossos clientes em todo o mundo.",
+                ko: "우리는 전 세계 고객에게 우수한 서비스를 제공하는 전문 회사입니다."
+            },
+            "services-heading": {
+                en: "Our Services",
+                hi: "हमारी सेवाएं",
+                gu: "અમારી સેવાઓ",
+                ja: "私たちのサービス",
+                zh: "我们的服务",
+                es: "Nuestros servicios",
+                fr: "Nos services",
+                de: "Unsere Dienstleistungen",
+                ar: "خدماتنا",
+                ru: "Наши услуги",
+                pt: "Nossos serviços",
+                ko: "우리의 서비스"
+            },
+            "services-text": {
+                en: "We offer top-quality services including web development, mobile apps, and digital marketing.",
+                hi: "हम वेब विकास, मोबाइल ऐप्स और डिजिटल मार्केटिंग सहित शीर्ष गुणवत्ता वाली सेवाएं प्रदान करते हैं।",
+                gu: "અમે વેબ ડેવલપમેન્ટ, મોબાઇલ એપ્સ અને ડિજિટલ માર્કેટિંગ સહિત ઉચ્ચ ગુણવત્તાની સેવાઓ પ્રદાન કરીએ છીએ.",
+                ja: "ウェブ開発、モバイルアプリ、デジタルマーケティングなど、最高品質のサービスを提供しています。",
+                zh: "我们提供包括网站开发、移动应用和数字营销在内的顶级服务。",
+                es: "Ofrecemos servicios de alta calidad que incluyen desarrollo web, aplicaciones móviles y marketing digital.",
+                fr: "Nous offrons des services de qualité supérieure, notamment le développement Web, les applications mobiles et le marketing numérique.",
+                de: "Wir bieten erstklassige Dienstleistungen wie Webentwicklung, mobile Apps und digitales Marketing.",
+                ar: "نحن نقدم خدمات عالية الجودة بما في ذلك تطوير الويب وتطبيقات الهاتف المحمول والتسويق الرقمي.",
+                ru: "Мы предлагаем высококачественные услуги, включая веб-разработку, мобильные приложения и цифровой маркетинг.",
+                pt: "Oferecemos serviços de alta qualidade, incluindo desenvolvimento web, aplicativos móveis e marketing digital.",
+                ko: "우리는 웹 개발, 모바일 앱 및 디지털 마케팅을 포함한 최고 품질의 서비스를 제공합니다."
+            },
+            "contact-heading": {
+                en: "Contact Information",
+                hi: "संपर्क जानकारी",
+                gu: "સંપર્ક માહિતી",
+                ja: "お問い合わせ情報",
+                zh: "联系信息",
+                es: "Información de contacto",
+                fr: "Informations de contact",
+                de: "Kontaktinformationen",
+                ar: "معلومات الاتصال",
+                ru: "Контактная информация",
+                pt: "Informações de contato",
+                ko: "연락처 정보"
+            },
+            "contact-text": {
+                en: "Feel free to reach out to us anytime. We are here to help you!",
+                hi: "किसी भी समय हमसे संपर्क करने में संकोच न करें। हम आपकी मदद के लिए यहां हैं!",
+                gu: "કોઈપણ સમયે અમારો સંપર્ક કરવામાં અચકાશો નહીં. અમે તમને મદદ કરવા માટે અહીં છીએ!",
+                ja: "いつでもお気軽にお問い合わせください。私たちはあなたを助けるためにここにいます！",
+                zh: "随时与我们联系。我们在这里帮助您！",
+                es: "No dude en contactarnos en cualquier momento. ¡Estamos aquí para ayudarte!",
+                fr: "N'hésitez pas à nous contacter à tout moment. Nous sommes là pour vous aider!",
+                de: "Zögern Sie nicht, uns jederzeit zu kontaktieren. Wir sind hier, um Ihnen zu helfen!",
+                ar: "لا تتردد في الاتصال بنا في أي وقت. نحن هنا لمساعدتك!",
+                ru: "Не стесняйтесь обращаться к нам в любое время. Мы здесь, чтобы помочь вам!",
+                pt: "Sinta-se à vontade para entrar em contato conosco a qualquer momento. Estamos aqui para ajudá-lo!",
+                ko: "언제든지 연락주세요. 우리는 당신을 돕기 위해 여기 있습니다!"
+            }
+        };
+
+        function toggleDropdown() {
+            const menu = document.getElementById('dropdownMenu');
+            const icon = document.getElementById('dropdownIcon');
+            menu.classList.toggle('show');
+            icon.classList.toggle('open');
+        }
+
+        function changeLanguage(langCode, flag, langName) {
+            // Update button
+            document.getElementById('currentFlag').textContent = flag;
+            document.getElementById('currentLangName').textContent = langName;
+            
+            // Close dropdown
+            document.getElementById('dropdownMenu').classList.remove('show');
+            document.getElementById('dropdownIcon').classList.remove('open');
+            
+            // Translate all elements by their ID
+            for (const elementId in translations) {
+                const element = document.getElementById(elementId);
+                if (element && translations[elementId][langCode]) {
+                    element.style.transition = 'opacity 0.3s ease';
+                    element.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        element.textContent = translations[elementId][langCode];
+                        element.style.opacity = '1';
+                    }, 300);
+                }
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const container = document.querySelector('.language-dropdown-container');
+            if (!container.contains(event.target)) {
+                document.getElementById('dropdownMenu').classList.remove('show');
+                document.getElementById('dropdownIcon').classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
