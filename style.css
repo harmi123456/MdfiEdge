@@ -926,7 +926,7 @@ footer {
 
     .floating-icons {
       right: 20px;
-      top: 20px;
+      top: 120px;  
       transform: none;
       flex-direction: row;
     }
@@ -959,6 +959,11 @@ footer {
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  .sec4 .floating-icons {
+    display: none;
+  }
+
 }
 
 
