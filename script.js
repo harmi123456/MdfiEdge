@@ -9,7 +9,7 @@
 // ================= HEADER SCRIPT START =================
 
 // Load header
-const ROOT = "/MdfiEdge/";
+const ROOT = "/";
 
 fetch(ROOT + "header/header.html")
   .then(res => res.text())
@@ -23,13 +23,6 @@ fetch(ROOT + "header/header.html")
       });
     }
   });
-
-
-// fetch("footer.html")
-//   .then(res => res.text())
-//   .then(data => {
-//     document.getElementById("footer").innerHTML = data;
-//   });
 
 
 
