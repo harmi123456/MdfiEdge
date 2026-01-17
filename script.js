@@ -1,23 +1,17 @@
-fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer').innerHTML = data;
-    });
+// fetch('footer.html')
+//     .then(response => response.text())
+//     .then(data => {
+//         document.getElementById('footer').innerHTML = data;
+//     });
 
 
 // Header script start
 // ================= HEADER SCRIPT START =================
 
 // Load header
-const isInFolder =
-      window.location.pathname.includes("/about/") ||
-      window.location.pathname.includes("/contact/");
+const ROOT = "/MdfiEdge/";
 
-const headerPath = isInFolder
-  ? "../header/header.html"
-  : "header/header.html";
-
-fetch(headerPath)
+fetch(ROOT + "header/header.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("header").innerHTML = data;
@@ -29,6 +23,14 @@ fetch(headerPath)
       });
     }
   });
+
+
+// fetch("footer.html")
+//   .then(res => res.text())
+//   .then(data => {
+//     document.getElementById("footer").innerHTML = data;
+//   });
+
 
 
 
