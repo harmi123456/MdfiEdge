@@ -9,13 +9,29 @@ fetch('footer.html')
 // ================= HEADER SCRIPT START =================
 
 // Load header
-fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-        document.getElementById('header').innerHTML = data;
-        initializeHeader();
-    })
-    .catch(err => console.error('Header load error:', err));
+const isInFolder =
+      window.location.pathname.includes("/about/") ||
+      window.location.pathname.includes("/contact/");
+
+const headerPath = isInFolder
+  ? "../header/header.html"
+  : "header/header.html";
+
+fetch(headerPath)
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    const menuBtn = document.querySelector(".menu-btn");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        document.querySelector(".nav").classList.toggle("open");
+      });
+    }
+  });
+
+
+
 
 function initializeHeader() {
 
