@@ -27,7 +27,7 @@ function initializeHeader() {
     // -------- ACTIVE PAGE LOGIC --------
     const currentPath = window.location.pathname;
     const currentPage =
-        currentPath.substring(currentPath.lastIndexOf('/') + 1) || "index.html";
+        currentPath.substring(currentPath.lastIndexOf('/') + 1) || "/";
 
     // Reset
     navLinks.forEach(link => link.classList.remove("active"));
