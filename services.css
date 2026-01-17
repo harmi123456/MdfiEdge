@@ -1,7 +1,9 @@
  :root {
-     --primary: #0f3d32;
-     --secondary: #6b3fa0;
-     --dark: #0b0f0e;
+     --primary: #2f4156;
+     --secondary: #567cbd;
+     --background-color: #f5efeb;
+     --heading-color: #090f15;
+     --text-color: #262e36;
      --light: #ffffff;
      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
      --nav-padding: clamp(0.35rem, 0.8vw, 0.6rem);
@@ -11,16 +13,16 @@
  }
 
  * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
  }
 
  body {
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
      line-height: 1.6;
-     color: var(--dark);
-     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+     color: var(--text-color);
+     background: linear-gradient(135deg, var(--background-color) 0%, var(--background-color) 100%);
  }
 
  .year-end-section {
@@ -76,7 +78,7 @@
  .content-card p {
      font-size: var(--font-base);
      line-height: 1.8;
-     color: #333;
+     color: var(--text-color);
      text-align: justify;
  }
 
@@ -171,7 +173,7 @@
  }
 
  .form-header p {
-     color: #6c757d;
+     color: var(--text-color);
      font-size: var(--font-base);
  }
 
@@ -181,7 +183,7 @@
 
  .form-label {
      display: block;
-     color: var(--dark);
+     color: var(--text-color);
      font-size: var(--font-base);
      font-weight: 600;
      margin-bottom: 0.5rem;
@@ -350,7 +352,7 @@
 
  .contact-card h3 {
      font-size: var(--font-brand);
-     color: var(--dark);
+     color: var(--text-color);
      font-weight: 600;
      margin-bottom: 1rem;
      letter-spacing: -0.02em;
@@ -430,7 +432,7 @@
  }
 
  .newsletter-section p {
-     color: rgba(255, 255, 255, 0.9);
+     color: var(--light);
      font-size: var(--font-base);
      margin-bottom: 2rem;
      line-height: 1.6;

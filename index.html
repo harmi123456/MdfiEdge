@@ -17,7 +17,7 @@
 
     <!-- style css -->
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="services.css"> -->
+
 </head>
 
 <body>
@@ -28,33 +28,31 @@
     <section class="offshore-section">
         <div class="offshore-container">
 
-            <span class="badge" id="offshore-badge">
+            <span class="badge">
                 ✨ New: Discover smarter offshore solutions
             </span>
 
-            <h1 class="offshore-title" id="offshore-title">
+            <h1 class="offshore-title">
                 Offshoring:<br />
                 <span id="offshore-subtitle">A Smarter Strategic Advantage</span>
             </h1>
 
-            <p class="offshore-desc" id="offshore-desc">
+            <p class="offshore-desc">
                 Learn how offshoring can streamline operations, lower costs,
                 and help your business focus on what truly matters — growth and innovation.
             </p>
 
             <div class="cta-group">
-                <a href="index.html" class="btn-primary" id="offshore-btn-primary">
+                <a href="index.html" class="btn-primary">
                     Explore Solutions
                 </a>
-                <a href="about.html" class="btn-secondary" id="offshore-btn-secondary">
+                <a href="about.html" class="btn-secondary">
                     Learn More
                 </a>
             </div>
 
         </div>
     </section>
-
-
 
 
     <!-- Image Section -->
@@ -144,7 +142,7 @@
         <div class="edge-container">
             <div class="section-header">
                 <div class="badge">🎯 Key Benefits</div>
-                <h1>The Competitive Edge<br>of Offshoring</h1>
+                <h2>The Competitive Edge<br>of Offshoring</h2>
                 <p>Offshoring offers a range of benefits that can significantly impact your firm's efficiency and bottom
                     line.</p>
             </div>
@@ -404,71 +402,6 @@
     </section>
 
 
-
-
-    <!-- Language Dropdown -->
-    <div class="language-dropdown-container">
-        <div class="language-selector">
-            <button class="language-btn" onclick="toggleDropdown()">
-                <span class="flag" id="currentFlag">🌐</span>
-                <span id="currentLangName">Language</span>
-                <span class="dropdown-icon" id="dropdownIcon">▼</span>
-            </button>
-
-            <div class="dropdown-menu" id="dropdownMenu">
-                <div class="lang-option" onclick="changeLanguage('en', '🇬🇧', 'English')">
-                    <span class="flag">🇬🇧</span>
-                    <span>English</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('hi', '🇮🇳', 'हिंदी')">
-                    <span class="flag">🇮🇳</span>
-                    <span>Hindi (हिंदी)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('gu', '🇮🇳', 'ગુજરાતી')">
-                    <span class="flag">🇮🇳</span>
-                    <span>Gujarati (ગુજરાતી)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('ja', '🇯🇵', '日本語')">
-                    <span class="flag">🇯🇵</span>
-                    <span>Japanese (日本語)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('zh', '🇨🇳', '中文')">
-                    <span class="flag">🇨🇳</span>
-                    <span>Chinese (中文)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('es', '🇪🇸', 'Español')">
-                    <span class="flag">🇪🇸</span>
-                    <span>Spanish (Español)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('fr', '🇫🇷', 'Français')">
-                    <span class="flag">🇫🇷</span>
-                    <span>French (Français)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('de', '🇩🇪', 'Deutsch')">
-                    <span class="flag">🇩🇪</span>
-                    <span>German (Deutsch)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('ar', '🇸🇦', 'العربية')">
-                    <span class="flag">🇸🇦</span>
-                    <span>Arabic (العربية)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('ru', '🇷🇺', 'Русский')">
-                    <span class="flag">🇷🇺</span>
-                    <span>Russian (Русский)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('pt', '🇵🇹', 'Português')">
-                    <span class="flag">🇵🇹</span>
-                    <span>Portuguese (Português)</span>
-                </div>
-                <div class="lang-option" onclick="changeLanguage('ko', '🇰🇷', '한국어')">
-                    <span class="flag">🇰🇷</span>
-                    <span>Korean (한국어)</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <footer id="footer"></footer>
 
     <!-- bootstrap js -->
@@ -481,164 +414,3 @@
 
 <!-- //site script -->
 <script src="script.js" defer></script>
-
-
-<script>
-    console.log("script.js loaded");
-
-    // ---------------- TRANSLATIONS ----------------
-    const translations = {
-        "offshore-badge": {
-            en: "✨ New: Discover smarter offshore solutions",
-            hi: "✨ नया: स्मार्ट ऑफशोर समाधान खोजें",
-            gu: "✨ નવું: સ્માર્ટ ઓફશોર સોલ્યુશન્સ શોધો",
-            ja: "✨ 新着：よりスマートなオフショアソリューションを発見",
-            zh: "✨ 新消息：探索更智能的离岸解决方案",
-            es: "✨ Nuevo: Descubre soluciones offshore más inteligentes",
-            fr: "✨ Nouveau : Découvrez des solutions offshore plus intelligentes",
-            de: "✨ Neu: Entdecken Sie intelligentere Offshore-Lösungen",
-            ar: "✨ جديد: اكتشف حلول أوفشور أكثر ذكاءً",
-            ru: "✨ Новое: откройте для себя более умные офшорные решения",
-            pt: "✨ Novo: Descubra soluções offshore mais inteligentes",
-            ko: "✨ 신규: 더 스마트한 오프쇼어 솔루션을 만나보세요"
-        },
-
-        "offshore-title": {
-            en: "Offshoring:",
-            hi: "ऑफशोरिंग:",
-            gu: "ઓફશોરિંગ:",
-            ja: "オフショアリング:",
-            zh: "离岸外包：",
-            es: "Offshoring:",
-            fr: "Externalisation:",
-            de: "Offshoring:",
-            ar: "التعهيد الخارجي:",
-            ru: "Оффшоринг:",
-            pt: "Offshoring:",
-            ko: "오프쇼어링:"
-        },
-
-        "offshore-subtitle": {
-            en: "A Smarter Strategic Advantage",
-            hi: "एक स्मार्ट रणनीतिक लाभ",
-            gu: "એક સ્માર્ટ વ્યૂહાત્મક લાભ",
-            ja: "より賢い戦略的優位性",
-            zh: "更智能的战略优势",
-            es: "Una ventaja estratégica más inteligente",
-            fr: "Un avantage stratégique plus intelligent",
-            de: "Ein intelligenter strategischer Vorteil",
-            ar: "ميزة استراتيجية أكثر ذكاءً",
-            ru: "Более разумное стратегическое преимущество",
-            pt: "Uma vantagem estratégica mais inteligente",
-            ko: "더 스마트한 전략적 이점"
-        },
-
-        "offshore-desc": {
-            en: "Learn how offshoring can streamline operations, lower costs, and help your business focus on what truly matters — growth and innovation.",
-            hi: "जानें कि ऑफशोरिंग कैसे संचालन को सरल बनाता है, लागत कम करता है और आपके व्यवसाय को विकास और नवाचार पर ध्यान केंद्रित करने में मदद करता है।",
-            gu: "જાણો કે ઓફશોરિંગ કેવી રીતે કામગીરીને સરળ બનાવે છે, ખર્ચ ઘટાડે છે અને તમારા વ્યવસાયને વૃદ્ધિ અને નવીનતા પર ધ્યાન કેન્દ્રિત કરવામાં મદદ કરે છે.",
-            ja: "オフショアリングが業務を効率化し、コストを削減し、成長とイノベーションに集中できる方法を学びましょう。",
-            zh: "了解离岸外包如何简化运营、降低成本，并帮助您的业务专注于真正重要的事情——增长与创新。",
-            es: "Descubra cómo el offshoring puede optimizar las operaciones, reducir costos y ayudar a su empresa a centrarse en el crecimiento y la innovación.",
-            fr: "Découvrez comment l’externalisation peut rationaliser les opérations, réduire les coûts et aider votre entreprise à se concentrer sur la croissance et l’innovation.",
-            de: "Erfahren Sie, wie Offshoring Abläufe optimiert, Kosten senkt und Ihrem Unternehmen hilft, sich auf Wachstum und Innovation zu konzentrieren.",
-            ar: "تعرف على كيف يمكن للتعهيد الخارجي تبسيط العمليات وخفض التكاليف ومساعدة عملك على التركيز على النمو والابتكار.",
-            ru: "Узнайте, как оффшоринг может оптимизировать процессы, снизить затраты и помочь вашему бизнесу сосредоточиться на росте и инновациях.",
-            pt: "Descubra como o offshoring pode otimizar operações, reduzir custos e ajudar sua empresa a focar no crescimento e inovação.",
-            ko: "오프쇼어링이 운영을 간소화하고 비용을 절감하며 비즈니스가 성장과 혁신에 집중할 수 있도록 돕는 방법을 알아보세요."
-        },
-
-        "offshore-btn-primary": {
-            en: "Explore Solutions",
-            hi: "समाधान देखें",
-            gu: "સોલ્યુશન્સ જુઓ",
-            ja: "ソリューションを見る",
-            zh: "探索解决方案",
-            es: "Explorar soluciones",
-            fr: "Explorer les solutions",
-            de: "Lösungen entdecken",
-            ar: "استكشاف الحلول",
-            ru: "Изучить решения",
-            pt: "Explorar soluções",
-            ko: "솔루션 살펴보기"
-        },
-
-        "offshore-btn-secondary": {
-            en: "Learn More",
-            hi: "वधु जानें",
-            gu: "વધુ જાણો",
-            ja: "もっと詳しく",
-            zh: "了解更多",
-            es: "Más información",
-            fr: "En savoir plus",
-            de: "Mehr erfahren",
-            ar: "اعرف المزيد",
-            ru: "Узнать больше",
-            pt: "Saiba mais",
-            ko: "자세히 알아보기"
-        }
-    };
-
-
-    // ---------------- LANGUAGE CHANGE ----------------
-    function changeLanguage(lang, flag, langName) {
-
-        // Update dropdown UI
-        const flagEl = document.getElementById("currentFlag");
-        const nameEl = document.getElementById("currentLangName");
-
-        if (flagEl) flagEl.textContent = flag;
-        if (nameEl) nameEl.textContent = langName;
-
-        // Close dropdown safely
-        const menu = document.getElementById("dropdownMenu");
-        const icon = document.getElementById("dropdownIcon");
-        if (menu) menu.classList.remove("show");
-        if (icon) icon.classList.remove("open");
-
-        // Translate content
-        for (const id in translations) {
-            const el = document.getElementById(id);
-            if (el && translations[id][lang]) {
-                el.style.opacity = "0";
-                setTimeout(() => {
-                    el.textContent = translations[id][lang];
-                    el.style.opacity = "1";
-                }, 200);
-            }
-        }
-
-        localStorage.setItem("siteLang", lang);
-    }
-
-    // ---------------- LOAD SAVED LANGUAGE ----------------
-    document.addEventListener("DOMContentLoaded", () => {
-        const savedLang = localStorage.getItem("siteLang") || "en";
-
-        const langMap = {
-            en: { flag: "🇬🇧", name: "English" },
-            hi: { flag: "🇮🇳", name: "हिंदी" },
-            gu: { flag: "🇮🇳", name: "ગુજરાતી" }
-        };
-
-        const meta = langMap[savedLang] || { flag: "🌐", name: "Language" };
-        changeLanguage(savedLang, meta.flag, meta.name);
-    });
-
-    // ---------------- DROPDOWN ----------------
-    function toggleDropdown() {
-        const menu = document.getElementById("dropdownMenu");
-        const icon = document.getElementById("dropdownIcon");
-        if (menu) menu.classList.toggle("show");
-        if (icon) icon.classList.toggle("open");
-    }
-
-    // Close dropdown on outside click (SAFE)
-    document.addEventListener("click", function (event) {
-        const container = document.querySelector(".language-dropdown-container");
-        if (container && !container.contains(event.target)) {
-            document.getElementById("dropdownMenu")?.classList.remove("show");
-            document.getElementById("dropdownIcon")?.classList.remove("open");
-        }
-    });
-</script>
