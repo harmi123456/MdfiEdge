@@ -14,16 +14,925 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <link rel="stylesheet" href="../services.css">
-    
+    <!-- <link rel="stylesheet" href="../services.css"> -->
+
 </head>
+
+
+
+<style>
+    :root {
+        --primary: #2f4156;
+        --secondary: #567cbd;
+        --background-color: #f5efeb;
+        --heading-color: #090f15;
+        --text-color: #262e36;
+        --light: #ffffff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --nav-padding: clamp(0.35rem, 0.8vw, 0.6rem);
+        --nav-gap: clamp(0.75rem, 1.5vw, 1.2rem);
+        --font-base: clamp(0.9rem, 1vw, 1rem);
+        --font-brand: clamp(1.25rem, 2vw, 1.5rem);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80");
+        background-attachment: fixed;
+        background-position: center;
+         /* filter: grayscale(100%); */
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        color: var(--light);
+        padding: 2rem;
+        max-width: 1200px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .hero-content p {
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        font-weight: 300;
+        margin-bottom: 3rem;
+    }
+
+    .scroll-arrow {
+        width: 40px;
+        height: 40px;
+        animation: bounce 2s infinite;
+        margin: 0 auto;
+    }
+
+    .scroll-arrow svg {
+        width: 100%;
+        height: 100%;
+        stroke: #e91e63;
+        fill: none;
+        stroke-width: 3;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-10px);
+        }
+
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Quote Section */
+    .quote-section {
+        background-color: var(--light);
+        padding: 5rem 2rem;
+        text-align: center;
+    }
+
+    .quote-section i {
+        font-size: 3.5rem;
+        color: #e91e63;
+        margin-bottom: 2rem;
+        display: block;
+    }
+
+    .quote-text {
+        max-width: 900px;
+        margin: 0 auto 2rem;
+    }
+
+    .quote-text p {
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        color: var(--heading-color);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .quote-text strong {
+        font-weight: 700;
+    }
+
+    .quote-author {
+        font-size: 1rem;
+        color: var(--text-color);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.7;
+    }
+
+    /* Service Detail Section */
+    .service-detail-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 600px;
+    }
+
+    .service-content-box {
+        padding: 5rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .service-content-box.light {
+        background-color: var(--light);
+    }
+
+    .service-content-box.dark {
+        background-color: var(--heading-color);
+        color: var(--light);
+    }
+
+    .service-content-box h2 {
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: inherit;
+    }
+
+    .service-content-box.light h2 {
+        color: var(--heading-color);
+    }
+
+    .service-description {
+        font-size: var(--font-base);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .service-list {
+        list-style: none;
+        margin-top: 2rem;
+    }
+
+    .service-list li {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: var(--font-base);
+        line-height: 1.6;
+    }
+
+    .service-content-box.light .service-list li {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .service-list li:last-child {
+        border-bottom: none;
+    }
+
+    .check-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .check-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: #e91e63;
+        fill: none;
+        stroke-width: 3;
+    }
+
+    .service-image-box {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .why-us-section {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 10px;
+    }
+
+    .why-us-container {
+        position: relative;
+        min-height: 530px;
+    }
+
+    /* Center Circle */
+    .center-circle {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+        z-index: 5;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        overflow: visible;
+        animation: spinCircle 20s linear infinite;
+
+    }
+
+    @keyframes spinCircle {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+    /* Orbit container */
+    .orbit {
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Question mark */
+    .orbit img {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 34px;
+    }
+
+    /* Mobile adjust orbit size */
+    @media (max-width:576px) {
+        .orbit {
+            width: 210px;
+            height: 210px;
+        }
+
+        .orbit img {
+            width: 26px;
+        }
+    }
+
+
+    .center-circle h2 {
+        font-size: 26px;
+        font-weight: 700;
+        color: #2f4156;
+        animation: reverseText 20s linear infinite;
+    }
+
+
+    @keyframes reverseText {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(-360deg);
+        }
+    }
+
+    /* Cards container */
+    .cards-container {
+        position: relative;
+        width: 100%;
+        height: 530px;
+    }
+
+    /* Cards base */
+    .why-card {
+        position: absolute;
+        width: 250px;
+        min-height: 140px;
+        background: white;
+        padding: 22px 15px;
+        border-radius: 12px;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* Animation initial state */
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+        transition: all 0.8s ease;
+    }
+
+    /* Final circular positions after scroll */
+    .why-us-container.active .card-1 {
+        top: 0;
+        left: 90px;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .why-us-container.active .card-2 {
+        top: 0;
+        right: 90px;
+        left: auto;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .why-us-container.active .card-3 {
+        top: 50%;
+        right: 0;
+        left: auto;
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    .why-us-container.active .card-4 {
+        bottom: 0;
+        right: 90px;
+        top: auto;
+        left: auto;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .why-us-container.active .card-5 {
+        bottom: 0;
+        left: 90px;
+        top: auto;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .why-us-container.active .card-6 {
+        top: 50%;
+        left: 0;
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    /* Icons */
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid #567cbd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .icon-circle svg {
+        width: 26px;
+        height: 26px;
+        stroke: #567cbd;
+        fill: none;
+        stroke-width: 2;
+    }
+
+    .card-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2f4156;
+        margin: 0;
+    }
+
+    /* Tablet & Mobile → Grid layout */
+    @media (max-width: 992px) {
+
+        .why-us-container {
+            padding-top: 150px;
+            min-height: auto;
+        }
+
+        .center-circle {
+            top: 70px;
+            transform: translateX(-50%);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            height: auto;
+        }
+
+        .why-card {
+            position: relative;
+            width: 100%;
+            opacity: 1 !important;
+            transform: none !important;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+        }
+    }
+
+    @media (max-width: 576px) {
+
+        .cards-container {
+            grid-template-columns: 1fr;
+        }
+
+        .center-circle {
+            width: 160px;
+            height: 160px;
+        }
+
+        .center-circle h2 {
+            font-size: 22px;
+        }
+    }
+
+
+
+    @media (max-width: 1024px) {
+        .cards-container {
+            position: static;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            height: auto;
+        }
+
+        .why-card {
+            position: static;
+            transform: none !important;
+            width: auto;
+        }
+
+        .center-circle {
+            position: static;
+            margin: 0 auto 30px;
+        }
+
+        .line {
+            display: none;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .cards-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+        .service-detail-section {
+            grid-template-columns: 1fr;
+        }
+
+        .service-content-box {
+            padding: 3rem 2rem;
+        }
+
+        .why-us-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .why-us-center {
+            grid-column: 1;
+            grid-row: auto;
+        }
+
+        .hero-section {
+            min-height: 500px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .service-content-box {
+            padding: 2rem 1.5rem;
+        }
+
+        .quote-section {
+            padding: 3rem 1.5rem;
+        }
+
+        .scroll-top-btn {
+            width: 45px;
+            height: 45px;
+            bottom: 1.5rem;
+            right: 1.5rem;
+        }
+    }
+</style>
+
+
 
 <body>
 
     <header id="header"></header>
 
 
-    <section>This is my White label accounting page</section>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80" alt="City Skyline" class="hero-bg"> -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>LEGACY ACCOUNTING<br>&<br>ADVISORY SERVICES</h1>
+            <p>Here to Take your legacy further</p>
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5v14M19 12l-7 7-7-7" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <img src="../img/colun.png" alt="colun">
+        <div class="quote-text">
+            <p><strong>Managers and investors</strong> a like must understand that accounting numbers are the beginning,
+                not the end, of business valuation.</p>
+        </div>
+        <div class="quote-author">WARREN BUFFETT</div>
+    </section>
+
+    <!-- Bookkeeping Services -->
+    <section class="service-detail-section">
+        <div class="service-image-box">
+            <img src="../img/bookkeeping-service-uae.jpg" alt="Bookkeeping Services" class="service-image">
+        </div>
+        <div class="service-content-box dark">
+            <h2>Bookkeeping Services</h2>
+            <p class="service-description">We offer complete bookkeeping solutions to help businesses stay organised,
+                compliant, and focused on growth. Acting as a seamless extension of your team, we provide dependable and
+                efficient back-office support you can rely on. While the services below highlight our key offerings, our
+                capabilities go well beyond this list.</p>
+            <p class="service-description" style="font-weight: 600; margin-bottom: 1rem;">Our Bookkeeping Services
+                Include:</p>
+            <ul class="service-list">
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Accounts payable coordination</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Accounts receivable tracking</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Payroll transaction recording</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Payroll reconciliation</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Bank and credit card reconciliations</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Merchant and payment gateway reconciliations</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Inventory control and monitoring</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Financial transaction processing and review</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Accounting Services -->
+    <section class="service-detail-section">
+        <div class="service-content-box light">
+            <h2>Accounting Services</h2>
+            <p class="service-description">We deliver structured and reliable bookkeeping and accounting support,
+                enabling you to concentrate on strategic business operations. The services outlined below represent our
+                principal offerings; however, our technical expertise extends beyond these areas.</p>
+            <p class="service-description" style="font-weight: 600; margin-bottom: 1rem;">Our Accounting Services
+                Include:</p>
+            <ul class="service-list">
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Preparation and posting of month-end, quarter-end, and year-end adjusting journal entries,
+                        including prepayments, accruals, deferred revenue, and depreciation</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Cost accounting and project-based financial reporting</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Comprehensive general ledger review, reconciliation, and remediation</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Fixed asset accounting and lifecycle management</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Financial reporting in accordance with US GAAP requirements</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Accounting system setup, configuration, and process implementation</span>
+                </li>
+            </ul>
+        </div>
+        <div class="service-image-box">
+            <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?w=1200&q=80" alt="Accounting Services"
+                class="service-image">
+        </div>
+    </section>
+
+    <!-- Financial Reporting & Analytics -->
+    <section class="service-detail-section">
+        <div class="service-image-box">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
+                alt="Financial Reporting" class="service-image">
+        </div>
+        <div class="service-content-box dark">
+            <h2>Financial Reporting & Analytics</h2>
+            <p class="service-description">We recognise the critical importance of accurate and insightful financial
+                reporting in effective decision-making. Our in-house financial analysis specialists provide ongoing
+                support to help you gain clarity and control over your financial performance. While the services below
+                highlight our core analytical offerings, our expertise extends beyond these areas.</p>
+            <p class="service-description" style="font-weight: 600; margin-bottom: 1rem;">Our Financial Analysis &
+                Advisory Services Include:</p>
+            <ul class="service-list">
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Accounts payable ageing analysis and review</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Accounts receivable ageing analysis and assessment</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Job and project cost tracking, evaluation, and analysis</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Working capital optimisation and control</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Cash flow forecasting and liquidity planning</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Key performance indicator (KPI) development and reporting</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Monthly and quarterly financial performance analysis with management feedback</span>
+                </li>
+                <li>
+                    <div class="check-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span>Profitability and margin improvement analysis</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="why-us-section">
+        <div class="why-us-container">
+
+            <!-- Center Circle -->
+            <div class="center-circle">
+                <h2>Why Us?</h2>
+                <!-- <div class="orbit">.cards-container {
+
+    <img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/512px/2753.png" alt="question" />
+</div> -->
+
+            </div>
+
+            <!-- Cards Container -->
+            <div class="cards-container">
+                <!-- Card 1: Cost Saving (Top Left) -->
+                <div class="why-card card-1">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Cost saving</h3>
+                    <!-- <p class="card-description">We provide bookkeeping services at a fraction of the cost compared to hiring local bookkeepers. Labor costs in India are generally lower, leading to significant savings on wages and overhead expenses.</p> -->
+                </div>
+
+                <!-- Card 2: Better Customer Service (Top Right) -->
+                <div class="why-card card-2">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Better Customer Service</h3>
+                    <!-- <p class="card-description">We adhere to international quality standards, implement robust quality control measures, and provide ongoing training to our staff to ensure accuracy and reliability in bookkeeping processes.</p> -->
+                </div>
+
+                <!-- Card 3: Flexibility (Right) -->
+                <div class="why-card card-3">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Flexibility</h3>
+                    <!-- <p class="card-description">Whether you need full-service bookkeeping support or assistance with specific tasks, we can tailor our services to align with your unique requirements and budget constraints.</p> -->
+                </div>
+
+                <!-- Card 4: Data Privacy (Bottom Right) -->
+                <div class="why-card card-4">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Data Privacy</h3>
+                    <!-- <p class="card-description">We have invested in robust data encryption and access management to prevent unauthorized access, data breaches, and cyber threats.</p> -->
+                </div>
+
+                <!-- Card 5: Focus on Core Activities (Bottom Left) -->
+                <div class="why-card card-5">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Focus on core activities</h3>
+                    <!-- <p class="card-description">Delegating your bookkeeping tasks to experienced professionals allows business owners to prioritize tasks that directly contribute to business growth and profitability.</p> -->
+                </div>
+
+                <!-- Card 6: Specialized Expertise (Left) -->
+                <div class="why-card card-6">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                            <line x1="12" y1="22.08" x2="12" y2="12" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Specialized Expertise</h3>
+                    <!-- <p class="card-description">We are well-versed in international accounting standards and best practices, and have experience working with clients from various countries.</p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <footer id="footer"></footer>
 
@@ -31,7 +940,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-        
+
 </body>
 
 </html>
@@ -48,6 +957,23 @@
         .then(data => {
             document.getElementById("footer").innerHTML = data;
         });
+
+
+    //why us section animation
+    const whySection = document.querySelector(".why-us-container");
+
+    function revealWhySection() {
+        const sectionTop = whySection.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight - 100;
+
+        if (sectionTop < triggerPoint) {
+            whySection.classList.add("active");
+            window.removeEventListener("scroll", revealWhySection);
+        }
+    }
+
+    window.addEventListener("scroll", revealWhySection);
+
 </script>
 
 <!-- <script src="../script.js"></script> -->
