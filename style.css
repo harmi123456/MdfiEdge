@@ -336,7 +336,7 @@ footer {
     background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=85');
     background-size: cover;
     background-position: center;
-    opacity: 0.08;
+    opacity: 1;
     z-index: 0;
   }
 
