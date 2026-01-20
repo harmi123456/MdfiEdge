@@ -24,32 +24,61 @@
 
 
     <section class="offshore-section">
+        <div class="geometric-accent"></div>
+        <div class="geometric-accent"></div>
+        <div class="background-decoration"></div>
+
         <div class="offshore-container">
+            <div class="content-wrapper">
+                <span class="badge">
+                    ✨ New: Discover smarter offshore solutions
+                </span>
 
-            <span class="badge">
-                ✨ New: Discover smarter offshore solutions
-            </span>
+                <h1 class="offshore-title">
+                    <span id="offshore-subtitle">Streamline Your Financial Strategy with Expert Offshoring
+                        Services</span>
+                </h1>
 
-            <h1 class="offshore-title">
-                <span id="offshore-subtitle">Streamline Your Financial Strategy with Expert Offshoring Services</span>
-            </h1>
+                <p class="offshore-desc">
+                    Learn how offshoring can streamline operations, lower costs,
+                    and help your business focus on what truly matters — growth and innovation.
+                </p>
 
-            <p class="offshore-desc">
-                Learn how offshoring can streamline operations, lower costs,
-                and help your business focus on what truly matters - growth and innovation.
-            </p>
+                <div class="cta-group">
+                    <a href="/" class="btn-primary">
+                        Explore Solutions
+                    </a>
+                    <a href="/about/" class="btn-secondary">
+                        Learn More
+                    </a>
+                </div>
 
-            <div class="cta-group">
-                <a href="/" class="btn-primary">
-                    Explore Solutions
-                </a>
-                <a href="/about/" class="btn-secondary">
-                    Learn More
-                </a>
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Clients Served</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                </div>
             </div>
-
         </div>
     </section>
+
+
+    <div class="marquee-section">
+        <div class="marquee-wrapper">
+            <div class="marquee-content" id="marqueeContent">
+                <!-- Items will be dynamically generated -->
+            </div>
+        </div>
+    </div>
 
 
     <!-- Image Section -->
@@ -531,8 +560,7 @@
                 <!-- Service 2 - Accounting Services -->
                 <div class="service-row">
                     <div class="service-image-container">
-                        <img src="./img/accounting.jpg"
-                            alt="Accounting Services" class="service-image">
+                        <img src="./img/accounting.jpg" alt="Accounting Services" class="service-image">
                     </div>
                     <div class="service-content">
                         <div class="service-number">02</div>
@@ -706,3 +734,112 @@
 </script>
 <!-- //site script -->
 <script src="script.js" defer></script>
+
+<script>
+    const services = [
+        {
+            icon: '📊',
+            title: 'Tax Planning & Filing',
+            subtitle: 'ITR | GST | TDS Returns'
+        },
+        {
+            icon: '💼',
+            title: 'Business Registration',
+            subtitle: 'Company | LLP | Partnership'
+        },
+        {
+            icon: '📈',
+            title: 'Financial Auditing',
+            subtitle: 'Statutory & Internal Audit'
+        },
+        {
+            icon: '🏦',
+            title: 'Accounting Services',
+            subtitle: 'Bookkeeping & MIS Reports'
+        },
+        {
+            icon: '⚖️',
+            title: 'GST Compliance',
+            subtitle: 'Registration & Returns'
+        },
+        {
+            icon: '📋',
+            title: 'ROC Compliance',
+            subtitle: 'Annual Filings & Forms'
+        },
+        {
+            icon: '💰',
+            title: 'Wealth Management',
+            subtitle: 'Investment & Portfolio Planning'
+        },
+        {
+            icon: '🔍',
+            title: 'Due Diligence',
+            subtitle: 'Financial & Tax Assessment'
+        },
+        {
+            icon: '📝',
+            title: 'Trademark & IPR',
+            subtitle: 'Registration & Protection'
+        },
+        {
+            icon: '🎯',
+            title: 'Business Advisory',
+            subtitle: 'Strategic Consulting'
+        },
+        {
+            icon: '🏅',
+            badge: true,
+            title: 'ICAI Certified',
+            subtitle: '15+ Years Experience'
+        },
+        {
+            icon: '✅',
+            badge: true,
+            title: '500+ Happy Clients',
+            subtitle: 'Trusted by Businesses'
+        },
+        {
+            icon: '🌟',
+            badge: true,
+            title: '100% Compliance',
+            subtitle: 'Zero Penalties Guaranteed'
+        }
+    ];
+
+    function createMarqueeItem(item) {
+        if (item.badge) {
+            return `
+                    <div class="marquee-item">
+                        <div class="trust-badge">
+                            <span class="badge-icon">${item.icon}</span>
+                            <span>${item.title}</span>
+                        </div>
+                    </div>
+                    <div class="marquee-separator"></div>
+                `;
+        }
+
+        return `
+                <div class="marquee-item">
+                    <div class="marquee-icon">${item.icon}</div>
+                    <div class="marquee-text">
+                        <span class="marquee-title">${item.title}</span>
+                        <span class="marquee-subtitle">${item.subtitle}</span>
+                    </div>
+                </div>
+                <div class="marquee-separator"></div>
+            `;
+    }
+
+    function initializeMarquee() {
+        const marqueeContent = document.getElementById('marqueeContent');
+        const marqueeHTML = services.map(createMarqueeItem).join('');
+
+        // Duplicate content for seamless loop
+        marqueeContent.innerHTML = marqueeHTML + marqueeHTML;
+    }
+
+    // Initialize on load
+    initializeMarquee();
+</script>
