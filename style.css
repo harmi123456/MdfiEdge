@@ -26,10 +26,6 @@ body {
 :root {
   --primary: #2f4156;
   --secondary: #567cbd;
-
-  /* --primary: #0F3D3A;
-  --secondary: #C8F8A9; */
-
   --background-color: #f5efeb;
   --heading-color: #090f15;
   --text-color: #262e36;
