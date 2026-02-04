@@ -196,8 +196,7 @@ const form = document.getElementById('contactForm');
 const successMessage = document.getElementById('successMessage');
 const submitBtn = form.querySelector('.submit-btn');
 
-// **IMPORTANT: Replace with your actual email address**
-const YOUR_EMAIL = 'your-email@example.com';
+const YOUR_EMAIL = 'info@mdfinedge.com';
 
 // Validation functions
 function validateName(name) {
@@ -271,7 +270,7 @@ async function sendEmail(name, phone, email, message) {
     formData.append('_template', 'table');
 
     try {
-        const response = await fetch("https://formsubmit.co/harmipagada4@gmail.com", {
+        const response = await fetch("https://formsubmit.co/info@mdfinedge.com", {
             method: 'POST',
             body: formData,
             headers: {
